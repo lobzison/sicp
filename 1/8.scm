@@ -1,0 +1,18 @@
+(define (cube-root x) 
+    (define (cube x)
+        (* x x x))
+    (define (good-enough? guess)
+        (< (abs (- (cube guess) x)) 0.01))
+    (define (improve guess)
+        (/ (+ (/ x (square guess)) (* 2 guess))3))
+    (define (loop guess) 
+        (if (good-enough? guess)
+            guess
+            (loop (improve guess))
+        ))
+    (loop 1.0)
+    )
+
+(cube-root 8)
+(cube-root 27)
+(cube-root 64)
